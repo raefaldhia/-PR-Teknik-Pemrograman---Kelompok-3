@@ -1,5 +1,3 @@
-package kelompok3.atm;
-
 import java.util.Scanner;
 
 public class Keypad {

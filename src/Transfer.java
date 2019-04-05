@@ -1,10 +1,10 @@
-package kelompok3.atm;
-
 public class Transfer extends Transaction {
     private Keypad keypad;
     private int receiver;
     private double amount;
+
     private static int CANCELED = 0;
+
     public Transfer(int userAccountNumber, Screen atmScreen, BankDatabase atmBankDatabase, Keypad atmKeypad) {
         super(userAccountNumber, atmScreen, atmBankDatabase);
         keypad = atmKeypad;
@@ -17,15 +17,15 @@ public class Transfer extends Transaction {
         receiver = performGetReceiver();
         amount = performGetAmount();
         if (amount == CANCELED) {
-            screen.displayMessageLine("Canceling transaction...");
+            screen.displayMessageLine("\nCanceling transaction...");
         } else if (amount > 100.00) {
-            screen.displayMessageLine("Transfer limit exceeded.");
+            screen.displayMessageLine("\nTransfer limit exceeded.");
         } else if (getBankDatabase().getAvailableBalance(getAccountNumber()) < amount) {
-            screen.displayMessageLine("Insufficient amount of available balance.");
+            screen.displayMessageLine("\nInsufficient amount of the available balance.");
         } else if (getBankDatabase().transfer(getAccountNumber(), receiver, amount)) {
-            screen.displayMessageLine("Your balance has been transfered succesfully.");
+            screen.displayMessageLine("\nYour balance has been transferred successfully.");
         } else {
-            screen.displayMessageLine("Transaction failed.");
+            screen.displayMessageLine("\nFailed to perform transfer...");
         }
     }
 
@@ -41,19 +41,15 @@ public class Transfer extends Transaction {
         Screen screen = getScreen();
 
         int input;
+        screen.displayMessage("\n");
         do {
-            screen.displayMessage("Please input the transfer amount in CENTS (limit: ");
+            screen.displayMessage("Please input the transfer amount in CENTS (or 0 to cancel)[LIMIT: ");
             screen.displayDollarAmount(100);
-            screen.displayMessage(") [or 0 to cancel]: ");
+            screen.displayMessage("]: ");
             input = keypad.getInput();
 
         } while (input < 0);
 
-        if (input == CANCELED) {
-            return CANCELED;
-        }
-        else {
-            return (double) input / 100;
-        }
+        return (double) input / 100;
     }
 }

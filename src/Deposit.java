@@ -1,5 +1,3 @@
-package kelompok3.atm;
-
 public class Deposit extends Transaction {
    private double amount; // amount to deposit
    private Keypad keypad; // reference to keypad
@@ -25,18 +23,17 @@ public class Deposit extends Transaction {
 
       amount = promptForDepositAmount();
       if (amount == CANCELED) {
-         screen.displayMessageLine("Canceling transaction...");
+         screen.displayMessageLine("\nCanceling transaction...");
       } else {
          screen.displayMessage("\nPlease insert a deposit envelope containing ");
          screen.displayDollarAmount(amount);
          screen.displayMessageLine(".");
-         // TODO: ?
          if (depositSlot.isEnvelopeReceived() == true) {
             screen.displayMessageLine("Your envelope has been received.");
             screen.displayMessageLine("NOTE: The money just deposited will not be available until we verify the amount of any enclosed cash and your checks clear.");
             getBankDatabase().credit(getAccountNumber(), amount);
          } else {
-            // TODO: ?
+            // TODO:
          }
       }
    }
@@ -46,20 +43,15 @@ public class Deposit extends Transaction {
       Screen screen = getScreen(); // get reference to screen
 
       int input; // receive input of deposit amount
+      screen.displayMessage("\n");
       do {
          // display the prompt
-         screen.displayMessage("\nPlease enter a deposit amount in " +
+         screen.displayMessage("Please enter a deposit amount in " +
                  "CENTS (or 0 to cancel): ");
 
          input = keypad.getInput();
       } while (input < 0);
 
-      // check whether the user canceled or entered a valid amount
-      if (input == CANCELED) {
-         return CANCELED;
-      }
-      else {
-         return (double) input / 100; // return dollar amount
-      }
+      return (double) input / 100; // return dollar amount
    }
 } 

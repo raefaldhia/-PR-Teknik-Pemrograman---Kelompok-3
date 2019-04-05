@@ -1,5 +1,3 @@
-package kelompok3.atm;
-
 public class CashDispenser {
    // the default initial number of bills in the cash dispenser
    private final static int INITIAL_COUNT = 500;

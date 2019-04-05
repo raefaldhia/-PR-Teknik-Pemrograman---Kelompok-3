@@ -1,5 +1,3 @@
-package kelompok3.atm;
-
 public class ChangePin extends Transaction {
     private Keypad keypad;
 
@@ -15,12 +13,12 @@ public class ChangePin extends Transaction {
 
         while (true) {
             if (getBankDatabase().changePin(getAccountNumber(), promptChangePin()) == false) {
-                screen.displayMessageLine("PIN cannot be the same as the old one.");
+                screen.displayMessageLine("\nThe PIN cannot be the same as the old one.");
             } else {
                 break;
             }
         }
-        screen.displayMessageLine("Your PIN has been changed.");
+        screen.displayMessageLine("\nYour PIN has been changed.");
     }
 
     private int promptChangePin() {

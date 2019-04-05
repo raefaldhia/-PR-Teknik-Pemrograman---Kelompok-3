@@ -1,5 +1,3 @@
-package kelompok3.atm;
-
 public class Screen {
    // display a message without a carriage return
    public void displayMessage(String message) {

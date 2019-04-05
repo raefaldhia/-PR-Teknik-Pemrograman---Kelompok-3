@@ -1,5 +1,3 @@
-package kelompok3.atm;
-
 public class BankDatabase {
     private Account[] accounts; // array of Accounts
 
@@ -8,7 +6,7 @@ public class BankDatabase {
     static final int ACCOUNT_AVAILABLE = 2;
 
     public BankDatabase() {
-        accounts = new Account[3]; // just 2 accounts for testing
+        accounts = new Account[3]; // just 3 accounts for testing
         accounts[0] = new Account(12345, 54321, 1000.0, 1200.0, false);
         accounts[1] = new Account(8765, 5678, 200.0, 200.0, false);
         accounts[2] = new Account(0, 0, 200.0, 200.0, true);
@@ -85,13 +83,11 @@ public class BankDatabase {
     }
 
     public boolean unblock(int userAccountNumber, int targetAccountNumber) {
-        if (isAdmin(userAccountNumber)) {
-            Account account = getAccount(targetAccountNumber);
-            if (account != null) {
-                account.unblock();
-            }
+        Account account = getAccount(targetAccountNumber);
+        if (account != null) {
+            account.unblock();
             return true;
         }
         return false;
     }
-} 
+}

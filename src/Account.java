@@ -1,11 +1,8 @@
-package kelompok3.atm;
-
 public class Account {
    private int accountNumber; // account number
    private int pin; // PIN for authentication
    private double availableBalance; // funds available for withdrawal
    private double totalBalance; // funds available & pending deposits
-   private boolean blocked;
    private int tryCount;
    private boolean admin;
 
@@ -16,7 +13,6 @@ public class Account {
       pin = thePIN;
       availableBalance = theAvailableBalance;
       totalBalance = theTotalBalance;
-      blocked = false;
       tryCount = 0;
       admin = _isAdmin;
    }
@@ -29,10 +25,6 @@ public class Account {
       }
       else {
          ++tryCount;
-         if (tryCount == 3) {
-            block();
-            tryCount = 0;
-         }
          return false;
       }
    } 
@@ -74,15 +66,11 @@ public class Account {
    }
 
    public boolean isBlocked() {
-      return blocked;
-   }
-
-   public void block() {
-      blocked = true;
+      return (tryCount == 3);
    }
 
    public void unblock() {
-      blocked = false;
+      tryCount = 0;
    }
 
    public boolean isAdmin() {

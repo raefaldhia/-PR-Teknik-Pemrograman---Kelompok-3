@@ -1,5 +1,3 @@
-package kelompok3.atm;
-
 public class BalanceInquiry extends Transaction {
    // BalanceInquiry constructor
    public BalanceInquiry(int userAccountNumber, Screen atmScreen,
